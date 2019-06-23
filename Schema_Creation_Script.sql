@@ -3,14 +3,12 @@ use CMSC495_Team3;
 
 CREATE TABLE IF NOT EXISTS userLogin(
     UserName VARCHAR(100) NOT NULL,
-    Password VARCHAR(30)  NOT NULL,
+    Password VARCHAR(50)  NOT NULL,
     UserEmail VARCHAR(255) NOT NULL,
     UserId int PRIMARY KEY,
     FirstName VARCHAR(100) NULL,
     LastName VARCHAR(100) NULL,
     Location VARCHAR(255) NULL    
-    -- AddDate DATETIME,
-    -- UpdatedTime DATETIME
 );
 
 CREATE TABLE IF NOT EXISTS socialMedia(
@@ -36,8 +34,6 @@ CREATE TABLE IF NOT EXISTS brewery(
     BreweryDbId INT NULL,
     LabelUrl VARCHAR(1024) NULL,
     OrgType VARCHAR(50) NULL
-    -- AddDate DATETIME,
-    -- UpdatedTime DATETIME
 );
 
 CREATE TABLE IF NOT EXISTS Beer(
@@ -52,10 +48,7 @@ CREATE TABLE IF NOT EXISTS Beer(
     Style VARCHAR(255) NULL,
     ShortStyle VARCHAR(255) NULL,
     LabelUrl VARCHAR(1024) NULL,
-    -- Type VARCHAR(2055) NULL,
     FOREIGN KEY (Brewery_FK) REFERENCES brewery(BreweryId)
-    -- AddDate DATETIME NULL,
-    -- UpdateTime DATETIME NULL,
 );
 
 CREATE TABLE IF NOT EXISTS beerRankings(
@@ -64,7 +57,10 @@ CREATE TABLE IF NOT EXISTS beerRankings(
     Score FLOAT NULL,
     UserRankPosition INT NULL,
     HaveTried BOOLEAN NOT NULL,
-    
+    UntappdReviewId INT NULL,
+    BreweryDbId INT NULL,
+    Description VARCHAR(2048) NULL,
+    UserReview VARCHAR (2048) NULL,    
     FOREIGN KEY (User_FK) REFERENCES userLogin(UserId),
     FOREIGN KEY (Beer_FK) REFERENCES beer(BeerId)
 );
